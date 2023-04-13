@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o#*pkk(qzzd_fwl3+&*b&viq5&blyzz*py6+%)u0o!%3knc=ra
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trading-graph.vercel.app']
+ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost']
 
 
 # Application definition
