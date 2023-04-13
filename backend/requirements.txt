@@ -4,7 +4,6 @@ Django==4.2
 django-cors-headers==3.14.0
 djangorestframework==3.14.0
 Pillow==9.5.0
-psycopg2==2.9.6
 psycopg2-binary==2.9.6
 pytz==2023.3
 pytz-deprecation-shim==0.1.0.post0
