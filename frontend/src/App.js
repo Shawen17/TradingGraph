@@ -38,7 +38,7 @@ function App() {
             'Accept':'application/json'
         }
     };
-    axios.get('https://trading-graph-qymbvpp7d-shawen17.vercel.app/api/get_data/', config).then(res => setData({items:res.data}))
+    axios.get('https://trading-graph.vercel.app/api/get_data/', config).then(res => setData({items:res.data}))
     },60000);
     return ()=> clearInterval(interval);
    },[])
