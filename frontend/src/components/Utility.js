@@ -33,3 +33,7 @@ export function extractData(filtered){
     ]
     return {user,data}
 }
+
+export function Gen(min=60,max=190){
+    return Math.floor(Math.random()*(max-min)) + min
+  }
