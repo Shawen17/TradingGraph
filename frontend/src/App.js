@@ -1,7 +1,7 @@
 import  React,{useEffect,useState,useMemo} from 'react';
 import './App.css';
 import Graph from './pages/Graph';
-import {fit,extractData,Gen} from './components/Utility';
+import {fit,extractData} from './components/Utility';
 import styled from 'styled-components';
 import axios from 'axios';
 
