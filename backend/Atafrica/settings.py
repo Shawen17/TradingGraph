@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import MetaTrader5 as mt5
 
+
+
+
+mt5.initialize()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +31,7 @@ SECRET_KEY = 'django-insecure-o#*pkk(qzzd_fwl3+&*b&viq5&blyzz*py6+%)u0o!%3knc=ra
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost']
+ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost','2d13-105-112-28-134.ngrok-free.app']
 
 
 # Application definition

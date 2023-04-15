@@ -11,7 +11,7 @@ const Graph = (props)=>{
     const layout ={
         width:600, height:340, title:`historical data of  ${subTitle}`,
         xaxis:{title:'time',type:'date'},
-        yaxis:{title:'equity and balance',type:'linear',range:[0,300]},
+        yaxis:{title:'equity and balance',type:'linear'},
         
         showLegend:true,
         font:{

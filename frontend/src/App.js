@@ -3,7 +3,7 @@ import './App.css';
 import Graph from './pages/Graph';
 import {fit,extractData,Gen} from './components/Utility';
 import styled from 'styled-components';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Container= styled.div`
   display:flex;
@@ -26,7 +26,7 @@ text-align:center`
 
 
 function App() {
-  const [result,setData]= useState({items:[{login:'',equity:0,balance:0,time:''}]})
+  const [result,setData]= useState({items:[{id:0,login:0,equity:0,balance:0,time:''}]})
   
 
   
@@ -34,26 +34,26 @@ function App() {
 
   useEffect(()=>{
     const interval = setInterval(()=>{
-      const accounts = ['22014542','51135132','51135134']
-      let a=[]
-      accounts.forEach(item=>{
-        const login = item
-        const equity = Gen(60,190)
-        const balance= Gen(60,190)
-        const time = new Date()
-        const b={login:login,equity:equity,balance:balance,time:time}
-        a.push(b)
+      // const accounts = ['68575110','5012400620','68575228']
+      // let a=[]
+      // accounts.forEach(item=>{
+      //   const login = item
+      //   const equity = Gen(60,190)
+      //   const balance= Gen(60,190)
+      //   const time = new Date()
+      //   const b={login:login,equity:equity,balance:balance,time:time}
+      //   a.push(b)
         
-      })
-      const newResult = [...result.items,...a]
-      setData({items:newResult})
-    //   const config ={
-    //     headers:{
-    //         'Content-Type':'application/json',
-    //         'Accept':'application/json'
-    //     }
-    // };
-    // axios.get('https://trading-graph.vercel.app/api/get_data/', config).then(res => setData({items:res.data}))
+      // })
+      // const newResult = [...result.items,...a]
+      // setData({items:newResult})
+      const config ={
+        headers:{
+            'Content-Type':'application/json',
+            'Accept':'application/json'
+        }
+    };
+    axios.get('https://2d13-105-112-28-134.ngrok-free.app/api/get_data/', config).then(res => setData({items:res.data}))
     },60000);
     return ()=> clearInterval(interval);
    },[result.items])
@@ -61,7 +61,7 @@ function App() {
    
 
    var groupedData = useMemo(()=>{
-    const accounts = ['22014542','51135132','51135134']
+    const accounts = ['68575110','5012400620','68575228']
       const allFiltered=[]
       accounts.forEach(item=>{
         const b= fit(item,result.items)
