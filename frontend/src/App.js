@@ -49,11 +49,12 @@ function App() {
       // setData({items:newResult})
       const config ={
         headers:{
+            "ngrok-skip-browser-warning":'65783',
             'Content-Type':'application/json',
-            'Accept':'application/json'
-        }
+            'Accept':'application/json',
+          }
     };
-    axios.get('https://2d13-105-112-28-134.ngrok-free.app/api/get_data/', config).then(res => setData({items:res.data}))
+    axios.get('https://faa2-105-112-28-134.ngrok-free.app/api/get_data/', config).then(res => setData({items:res.data}))
     },60000);
     return ()=> clearInterval(interval);
    },[result.items])

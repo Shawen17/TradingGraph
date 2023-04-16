@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-o#*pkk(qzzd_fwl3+&*b&viq5&blyzz*py6+%)u0o!%3knc=ra
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost','2d13-105-112-28-134.ngrok-free.app']
+ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost','faa2-105-112-28-134.ngrok-free.app']
 
 
 # Application definition
@@ -93,12 +93,12 @@ WSGI_APPLICATION = 'Atafrica.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'URL': 'postgresql://postgres:OZjSGML2nCQ9fIMp5Jrt@containers-us-west-183.railway.app:7556/railway',
+    'URL': 'postgresql://postgres:HbcA1vrgbwWvQ0AugHho@containers-us-west-55.railway.app:7712/railway',
     'NAME': 'railway',
     'USER': 'postgres',
-    'PASSWORD': 'OZjSGML2nCQ9fIMp5Jrt',
-    'HOST': 'containers-us-west-183.railway.app',
-    'PORT': 7556,
+    'PASSWORD': 'HbcA1vrgbwWvQ0AugHho',
+    'HOST': 'containers-us-west-55.railway.app',
+    'PORT': 7712,
 }
 }
 # DATABASES = {
@@ -160,5 +160,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = default_headers + (
+"ngrok-skip-browser-warning",
+)
 
 CORS_ALLOW_ALL_ORIGINS  = True
