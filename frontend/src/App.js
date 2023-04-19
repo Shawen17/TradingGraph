@@ -45,7 +45,7 @@ function App() {
             'Accept':'application/json',
           }
     };
-    axios.get('http://localhost:8000/api/get_data/', config).then(res => setData({items:res.data}));
+    axios.get('https://bf20-2c0f-2a80-e-5f10-554b-887-60b3-3847.ngrok-free.app/api/get_data/', config).then(res => setData({items:res.data}));
     setLoaded(true)
     },60000);
     return ()=> clearInterval(interval);
