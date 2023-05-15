@@ -6,5 +6,5 @@ from asgiref.sync import sync_to_async
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_data, 'interval', minutes=20)
+    scheduler.add_job(update_data, 'interval', minutes=1)
     scheduler.start()

@@ -83,24 +83,24 @@ WSGI_APPLICATION = 'Atafrica.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'URL': 'postgresql://postgres:HbcA1vrgbwWvQ0AugHho@containers-us-west-55.railway.app:7712/railway',
-    'NAME': 'railway',
-    'USER': 'postgres',
-    'PASSWORD': 'HbcA1vrgbwWvQ0AugHho',
-    'HOST': 'containers-us-west-55.railway.app',
-    'PORT': 7712,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-}
+
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'URL': 'postgresql://postgres:HbcA1vrgbwWvQ0AugHho@containers-us-west-55.railway.app:7712/railway',
+#     'NAME': 'railway',
+#     'USER': 'postgres',
+#     'PASSWORD': 'HbcA1vrgbwWvQ0AugHho',
+#     'HOST': 'containers-us-west-55.railway.app',
+#     'PORT': 7712,
+# }
+# }
 
 # DATABASES = {
 #     'default': {
