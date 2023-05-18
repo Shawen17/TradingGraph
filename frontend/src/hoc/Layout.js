@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -22,7 +22,7 @@ const Layout = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <NavBar handlechange={handlechange} mode={mode} />
+      <Sidebar handlechange={handlechange} mode={mode} />
       {props.children}
     </ThemeProvider>
   );

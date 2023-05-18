@@ -37,6 +37,62 @@
   }
 }
 
+.notify:hover {
+  animation: brew infinite 0.5s linear;
+}
+
+@keyframes brew {
+  0% {
+    transform: rotate(23deg);
+  }
+  25% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-23deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+.hamburger {
+  cursor: pointer;
+  display: none;
+}
+
+.sidebar-appear {
+  display: block;
+}
+
+.disappear {
+  display: none;
+}
+.appear {
+  display: block;
+}
+
+@media screen and (max-width: 568px) {
+  .hamburger {
+    display: block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 20px;
+    margin-top: 20px;
+    z-index: 99;
+  }
+  .sidebar-appear {
+    display: none;
+  }
+}
+
 @import url("https://fonts.googleapis.com/css?family=Barlow");
 
 /* body {

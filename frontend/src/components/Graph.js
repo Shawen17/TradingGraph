@@ -8,9 +8,11 @@ const Graph = (props) => {
   const subTitle = props.title;
 
   const layout = {
-    title: `historical data of  ${subTitle}`,
+    title: `trading plot in ${subTitle}`,
     xaxis: { title: "time", type: "date" },
     yaxis: { title: "equity and balance", type: "linear" },
+    width: 400,
+    height: 400,
 
     showLegend: true,
     font: {
@@ -18,6 +20,8 @@ const Graph = (props) => {
       size: 12,
       color: "black",
     },
+    paper_bgcolor: "#7f7f7",
+    plot_bgcolor: "#c7c7c7",
   };
 
   return (
