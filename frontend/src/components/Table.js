@@ -26,7 +26,11 @@ const Table = (props) => {
 
   return (
     <div style={{ margin: 20 }}>
-      <MaterialReactTable data={props.data} columns={columns} />
+      <MaterialReactTable
+        title={"Latest indexes"}
+        data={props.data}
+        columns={columns}
+      />
     </div>
   );
 };

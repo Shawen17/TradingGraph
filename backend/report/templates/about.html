@@ -1,29 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<style>
-    .a{
-        cursor: pointer;
-        background-color: darkcyan;
-        color: white;
-        text-transform: uppercase;
-        border-radius: 5px;
+  <style>
+    .a {
+      cursor: pointer;
+      background-color: darkcyan;
+      color: white;
+      text-transform: uppercase;
+      border-radius: 5px;
     }
-</style>
+    .red {
+      color: red;
+    }
+    .green {
+      color: green;
+    }
+  </style>
 
-
-<div style="text-align: center;">
-    <h4>Welcome to Backend Trading Update App</h4>
-    <a style="text-decoration-line: none;" href="http://localhost:8000/admin/">
+  <body>
+    <div style="text-align: center">
+      <h4>Welcome to Backend Trading Update App</h4>
+      <a style="text-decoration-line: none" href="http://localhost:8000/admin/">
         <button class="a">Goto backend</button>
-    </a>
-</div>
-   
+      </a>
+    </div>
+    <div id="chart" style="text-align: center; margin-top: 10px">{{jokes}}</div>
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Balance</th>
+          <th>Equity</th>
+          <th>Changes</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      var socket = new WebSocket("ws://" + window.location.host + "/ws/chart/");
 
+      socket.onopen = function (event) {
+        console.log("WebSocket connection is open");
+      };
 
+      socket.onmessage = function (event) {
+        var chart = JSON.parse(event.data);
+        chart = chart.slice(1, 20);
+        console.log("chart", chart);
+        updateTable(chart);
+      };
+
+      function updateTable(data) {
+        const tableBody = document.querySelector("#data-table tbody");
+
+        // Clear existing rows
+        tableBody.innerHTML = "";
+
+        // Iterate over the data array and create rows dynamically
+        data.forEach(function (item) {
+          const row = document.createElement("tr");
+
+          const balanceCell = document.createElement("td");
+          balanceCell.textContent = item.balance;
+          row.appendChild(balanceCell);
+
+          const equityCell = document.createElement("td");
+          equityCell.textContent = item.equity;
+          row.appendChild(equityCell);
+
+          const changeCell = document.createElement("td");
+          var change = item.equity - item.balance;
+          change = change.toFixed(2);
+          if (change < 0) {
+            changeCell.className = "red";
+          } else {
+            changeCell.className = "green";
+          }
+          changeCell.textContent = change;
+          row.appendChild(changeCell);
+
+          const timeCell = document.createElement("td");
+          timeCell.textContent = item.time;
+          row.appendChild(timeCell);
+
+          tableBody.appendChild(row);
+        });
+      }
+    </script>
+  </body>
 </html>
-
-
-
-
-
-

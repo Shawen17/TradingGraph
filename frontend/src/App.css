@@ -74,6 +74,13 @@
 .appear {
   display: block;
 }
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
 
 @media screen and (max-width: 568px) {
   .hamburger {
@@ -91,6 +98,13 @@
   .sidebar-appear {
     display: none;
   }
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Barlow");

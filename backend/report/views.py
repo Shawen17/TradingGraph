@@ -3,6 +3,7 @@ from .models import Account
 from .serializers import AccountSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import requests
 
 @api_view(['GET'])
 def get_data(request):
@@ -13,4 +14,8 @@ def get_data(request):
 
 
 def home(request):
-    return render (request,'about.html')
+    url='https://catfact.ninja/fact'
+    response=requests.get(url).json()
+    
+    jokes=response['fact']
+    return render (request,'about.html',{'jokes':jokes})

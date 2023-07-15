@@ -31,21 +31,25 @@ SECRET_KEY = 'django-insecure-o#*pkk(qzzd_fwl3+&*b&viq5&blyzz*py6+%)u0o!%3knc=ra
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost','bf20-2c0f-2a80-e-5f10-554b-887-60b3-3847.ngrok-free.app']
+ALLOWED_HOSTS = ['trading-graph.vercel.app','localhost','a2ae-81-24-192-5.ngrok-free.app']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'report.apps.ReportConfig',
     'rest_framework',
     'corsheaders',
+    'report',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +82,23 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Atafrica.wsgi.application'
+ASGI_APPLICATION = 'Atafrica.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 7000)],
+        },
+    },
+}
+
+CELERY_BROKER_URL= 'redis://localhost:7000/'
+# CELERY_RESULT_BACKEND = 'redis://localhost:7000/'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

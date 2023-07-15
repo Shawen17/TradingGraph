@@ -3,7 +3,7 @@ import axios from "axios";
 import { Data } from "../components/Utility";
 import styled from "styled-components";
 import Graph from "../components/Graph";
-import Table from "../components/Table";
+import IndexTable from "../components/IndexTable";
 import NavBar from "../components/NavBar";
 
 const Main = styled.div``;
@@ -46,33 +46,71 @@ const Image = styled.img`
 `;
 
 const DashBoard = () => {
-  const [loaded, setLoaded] = useState(false);
-  const [result, setData] = useState({
-    items: [{ id: 0, login: 0, equity: 0, balance: 0, time: "" }],
-  });
+  // const [loaded, setLoaded] = useState(false);
+  // const [result, setData] = useState({
+  //   items: [{ id: 0, login: 0, equity: 0, balance: 0, time: "" }],
+  // });
+  const [socket, setSocket] = useState(null);
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const config = {
+  //       headers: {
+  //         "ngrok-skip-browser-warning": "65783",
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //     };
+  //     axios
+  //       .get("http://localhost:8000/api/get_data/", config)
+  //       .then((res) => setData({ items: res.data }));
+  //     setLoaded(true);
+  //   }, 60000);
+  //   return () => clearInterval(interval);
+  // }, [result.items]);
+  useEffect(() => {
+    const config = {
+      headers: {
+        "ngrok-skip-browser-warning": "65783",
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+    axios.get("https://a2ae-81-24-192-5.ngrok-free.app/api/get_data/", config);
+    // Create WebSocket connection
+    const newSocket = new WebSocket(
+      "wss://a2ae-81-24-192-5.ngrok-free.app/ws/chart/"
+    );
+
+    // Store the WebSocket connection in state
+    setSocket(newSocket);
+
+    // Clean up the WebSocket connection on component unmount
+    // return () => {
+    //   newSocket.close();
+    // };
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const config = {
-        headers: {
-          "ngrok-skip-browser-warning": "65783",
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+    // Subscribe to WebSocket events
+    if (socket) {
+      socket.onopen = () => {
+        console.log("WebSocket connection established.");
       };
-      axios
-        .get("http://localhost:8000/api/get_data/", config)
-        .then((res) => setData({ items: res.data }));
-      setLoaded(true);
-    }, 60000);
-    return () => clearInterval(interval);
-  }, [result.items]);
 
-  const chartType = ["line", "bar", "histogram"];
+      socket.onmessage = (event) => {
+        const newData = JSON.parse(event.data);
+        setData(newData);
+      };
+    }
+  }, [socket]);
+
+  const chartType = ["scatter", "bar", "histogram"];
   const account = "68575110";
 
-  const finaldata = result.items.filter((item) => item.login === account);
-
+  // const finaldata = result.items.filter((item) => item.login === account);
+  const finaldata = data.filter((item) => item.login === account);
   return (
     <Main>
       <Wrapper>
@@ -80,7 +118,7 @@ const DashBoard = () => {
           <NavBar />
           <Title>Trading Chart</Title>
 
-          {loaded ? (
+          {data ? (
             <Container>
               {chartType.map((item, index) => {
                 return (
@@ -95,7 +133,7 @@ const DashBoard = () => {
           )}
         </div>
       </Wrapper>
-      <Table data={finaldata} />
+      <IndexTable data={finaldata.splice(0, 1)} />
     </Main>
   );
 };
