@@ -80,7 +80,7 @@ const DashBoard = () => {
     axios.get("https://a2ae-81-24-192-5.ngrok-free.app/api/get_data/", config);
     // Create WebSocket connection
     const newSocket = new WebSocket(
-      "wss://a2ae-81-24-192-5.ngrok-free.app/ws/chart/"
+      "ws://a2ae-81-24-192-5.ngrok-free.app/ws/chart/"
     );
 
     // Store the WebSocket connection in state
